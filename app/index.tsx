@@ -10,7 +10,7 @@ export default function SplashScreen() {
   useEffect(() => {
     // Redireciona para a tela de registro após 2 segundos
     const timer = setTimeout(() => {
-      router.push("/register"); // Redireciona para a tela de registro
+      router.push("/splashScreen"); // Redireciona para a tela de registro
     }, 2000); // O delay é de 2 segundos
 
     return () => clearTimeout(timer); // Limpa o timer quando o componente é desmontado

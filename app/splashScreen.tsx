@@ -36,14 +36,16 @@ const styles = StyleSheet.create({
     paddingTop: "50%",
   },
   logo: {
-    width: 150, // Ajuste conforme necessário
-    height: 150, // Ajuste conforme necessário
+    marginTop: 35,
+    width: 150,
+    height: 150,
     resizeMode: "contain",
+    justifyContent: "center",
   },
   text: {
-    fontSize: 32,
+    fontSize: 35,
     color: "#fff",
-    marginTop: 10,
+    justifyContent: "center",
   },
   eco: {
     color: "#fff",

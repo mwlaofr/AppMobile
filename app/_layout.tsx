@@ -73,6 +73,13 @@ function RootLayoutNav() {
             headerShown: false, // Remove o cabeçalho (setinha de voltar)
           }}
         />
+        <Stack.Screen
+          name="splashScreen"
+          options={{
+            title: "SplashScreen", // Define o título da tela
+            headerShown: false, // Remove o cabeçalho (setinha de voltar)
+          }}
+        />
         <Tabs
           screenOptions={{
             headerShown: false, // Remove o cabeçalho de todas as telas dentro de Tabs

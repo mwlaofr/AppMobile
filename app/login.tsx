@@ -7,6 +7,9 @@ import { LinearGradient } from "expo-linear-gradient";
 import { TouchableOpacity } from "react-native";
 import { useFonts } from "expo-font";
 import Svg, { Path } from "react-native-svg";
+import InputField from "../components/InputField";
+import GradientButton from "../components/GradientButton";
+import RegisterButton from "@/components/RegisterButton";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -34,47 +37,32 @@ export default function Login() {
       <View style={styles.containerHeader}>
         <View style={styles.header}></View>
       </View>
-      <Text style={styles.title}>Bem-Vindo</Text>
+      <Text style={styles.title}>Bem-Vindô</Text>
       <Text style={styles.subTitle}>Entre na sua conta</Text>
       <View style={styles.containerLogin}>
         <View style={styles.inputContainer}>
-          <TextInput
-            style={styles.input2}
+          <InputField
             placeholder="Email"
-            placeholderTextColor="#888"
             value={email}
             onChangeText={setEmail}
+            marginTop={30}
           />
-          <TextInput
-            style={styles.input}
+          <InputField
             placeholder="Senha"
-            secureTextEntry
-            placeholderTextColor="#888"
             value={password}
             onChangeText={setPassword}
+            secureTextEntry
           />
-          <Text style={styles.esqueciSenha}>esqueceu a senha?</Text>
+          <TouchableOpacity onPress={() => router.push("/login")}>
+            <Text style={styles.esqueciSenha}>Esqueceu a senha?</Text>
+          </TouchableOpacity>
         </View>
 
-        <TouchableOpacity style={styles.gradientButton} onPress={handleLogin}>
-          <LinearGradient
-            colors={["#69B578", "#254D32"]}
-            start={{ x: 1, y: 0 }}
-            end={{ x: 0, y: 0 }}
-            style={styles.gradientButton}
-          >
-            <Text style={styles.loginText}>Entrar</Text>
-          </LinearGradient>
-        </TouchableOpacity>
+        <GradientButton title="Entrar" onPress={handleLogin} />
 
         <Text style={styles.ou}>ou</Text>
 
-        <TouchableOpacity
-          style={styles.registerButton}
-          onPress={handleRegister}
-        >
-          <Text style={styles.registerText}>Registrar</Text>
-        </TouchableOpacity>
+        <RegisterButton title="Registrar" onPress={handleRegister} />
       </View>
     </View>
   );
@@ -138,33 +126,6 @@ const styles = StyleSheet.create({
     right: 99,
     bottom: 50,
   },
-  input: {
-    width: "100%",
-    padding: 10,
-    marginBottom: 25,
-    borderBottomWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 5,
-    backgroundColor: "#fff",
-    color: "#B9B8B8",
-    fontSize: 16,
-    fontWeight: "bold",
-    fontFamily: "Roboto-Bold",
-  },
-  input2: {
-    width: "100%",
-    padding: 10,
-    marginBottom: 25,
-    borderBottomWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 5,
-    backgroundColor: "#fff",
-    color: "#B9B8B8",
-    fontSize: 16,
-    fontWeight: "bold",
-    fontFamily: "Roboto-Bold",
-    marginTop: 30,
-  },
   esqueciSenha: {
     color: "#69B578",
     fontSize: 13,
@@ -173,36 +134,6 @@ const styles = StyleSheet.create({
     position: "absolute",
     right: 0,
     bottom: 0,
-  },
-  gradientButton: {
-    width: "75%",
-    height: 40,
-    padding: 8,
-    borderRadius: 50,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  loginText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
-    fontFamily: "Roboto-Bold",
-  },
-  registerButton: {
-    width: "55%",
-    padding: 8,
-    borderRadius: 50,
-    borderWidth: 2,
-    borderColor: "#28A745",
-    alignItems: "center",
-    justifyContent: "center",
-    marginBottom: 35,
-  },
-  registerText: {
-    color: "#28A745",
-    fontSize: 16,
-    fontWeight: "bold",
-    fontFamily: "Roboto-Bold",
   },
   ou: {
     color: "#B9B8B8",
