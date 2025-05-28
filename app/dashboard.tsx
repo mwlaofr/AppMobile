@@ -1,6 +1,7 @@
 // Em dashboard.tsx
 import React from "react";
 import { View, Text } from "react-native";
+import Sidebar from "../components/SideBar"
 
 const Dashboard = () => {
   return (
