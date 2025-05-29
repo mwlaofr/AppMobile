@@ -1,14 +1,25 @@
 // Em dashboard.tsx
 import React from "react";
-import { View, Text } from "react-native";
-import Sidebar from "../components/SideBar"
+import { View, Text, StyleSheet } from "react-native";
+import Sidebar from "../components/SideBar";
+import { useNavigation } from "@react-navigation/native";
 
-const Dashboard = () => {
+export default function Dashboard() {
+  const navigation = useNavigation();
+
+  const handleNavigate = (screen: string) => {
+    navigation.navigate(screen as never);
+  };
   return (
-    <View>
+    <View style={styles.dashboard}>
+      <Sidebar onNavigate={handleNavigate}/> 
       <Text>Bem-vindo ao Dashboard</Text>
     </View>
   );
-};
+}
 
-export default Dashboard; // Certifique-se de exportar o componente corretamente
+const styles = StyleSheet.create({
+  dashboard:{
+    backgroundColor: "#dee2e6",
+  },
+})
