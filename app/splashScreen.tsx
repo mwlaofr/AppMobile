@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 
-const logo = require("../assets/Logo.png");
+const logo = require("../assets/logoSplash.png");
 
 export default function SplashScreen() {
   const router = useRouter();
@@ -19,10 +19,10 @@ export default function SplashScreen() {
   return (
     <View style={styles.container}>
       <Image source={logo} style={styles.logo} />
-      <Text style={styles.text}>
+      <View style={styles.textContainer}>
         <Text style={styles.eco}>eco</Text>
         <Text style={styles.vision}>Vision</Text>
-      </Text>
+      </View>
     </View>
   );
 }
@@ -54,5 +54,8 @@ const styles = StyleSheet.create({
   vision: {
     color: "#fff",
     fontFamily: "Roboto-Bold",
+  },
+  textContainer: {
+    flexDirection: "row",
   },
 });
