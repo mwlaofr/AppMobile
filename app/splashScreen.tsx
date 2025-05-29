@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { View, Image, Text, StyleSheet } from "react-native";
 import { useRouter } from "expo-router";
 
-const logo = require("../assets/logo.png");
+const logo = require("../assets/Logo.png");
 
 export default function SplashScreen() {
   const router = useRouter();
