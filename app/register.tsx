@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from "react-native";
 import { useRouter } from "expo-router";
 import { useFonts } from "expo-font";
 import InputField from "../components/InputField";
 import GradientButton from "../components/GradientButton";
 import RegisterButton from "@/components/RegisterButton";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -18,15 +19,23 @@ export default function Register() {
     "Roboto-Bold": require("../assets/fonts/Roboto-Bold.ttf"),
   });
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (!name || !email || !password || !confirmPassword) {
       alert("Por favor, preencha todos os campos.");
     } else if (password !== confirmPassword) {
       alert("As senhas não coincidem.");
     } else {
-      // Aqui você pode adicionar a lógica de registro
-      alert("Conta criada com sucesso!");
-      router.push("/login"); // Redireciona após o registro
+      try {
+        const user = { name, email, password };
+        await AsyncStorage.setItem("user", JSON.stringify(user));
+
+        Alert.alert("Sucesso", "Conta criada com sucesso!", [
+          { text: "OK", onPress: () => router.push("/login") },
+        ]);
+      } catch (error) {
+        console.error("Erro ao salvar usuário:", error);
+        Alert.alert("Erro", "Não foi possível registrar o usuário.");
+      }
     }
   };
 
