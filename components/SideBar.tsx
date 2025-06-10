@@ -1,62 +1,62 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from "react-native";
-import {
-  Ionicons,
-  MaterialCommunityIcons,
-  FontAwesome5,
-} from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+const { width } = Dimensions.get("window");
+const SIDEBAR_WIDTH = width * 0.6;
 
 interface SidebarProps {
   onNavigate: (screen: string) => void;
-  onToggle: () => void
+  onToggle: () => void;
 }
 
 export default function Sidebar({ onNavigate, onToggle }: SidebarProps) {
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={styles.sidebar}>
+    <View
+      style={[
+        styles.sidebar,
+        {
+          paddingBottom: insets.bottom,
+          paddingTop: insets.top,
+          width: SIDEBAR_WIDTH,
+        },
+      ]}
+    >
       <View style={styles.logoContainer}>
         <TouchableOpacity onPress={onToggle}>
-          <Ionicons name="menu" size={24} />
+          <Ionicons name="menu" size={28} />
         </TouchableOpacity>
         <Image style={styles.logo} source={require("@/assets/Logo.png")} />
-        <Text style={styles.logoText}>ecoVision</Text>
+        <Text style={styles.ecoText}>
+          eco
+          <Text style={styles.visionText}>Vision</Text>
+        </Text>
       </View>
 
-      {/* Itens do menu */}
-      <TouchableOpacity style={styles.item} onPress={() => onNavigate("Inicio")}>
-        <Ionicons name="home-outline" size={20} />
-        <Text style={styles.text}>Início</Text>
-      </TouchableOpacity>
+      {menuItems.map((item, index) => (
+        <TouchableOpacity
+          key={index}
+          style={styles.item}
+          onPress={() => onNavigate(item.screen)}
+        >
+          {item.icon}
+          <Text style={styles.text}>{item.label}</Text>
+        </TouchableOpacity>
+      ))}
 
-      <TouchableOpacity style={styles.item} onPress={() => onNavigate("Monitoramento")}>
-        <Ionicons name="desktop-outline" size={20} />
-        <Text style={styles.text}>Monitoramento</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.item} onPress={() => onNavigate("Chatbot")}>
-        <MaterialCommunityIcons name="robot-outline" size={20} />
-        <Text style={styles.text}>Chatbot</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.item} onPress={() => onNavigate("Relatorios")}>
-        <Ionicons name="document-text-outline" size={20} />
-        <Text style={styles.text}>Relatórios</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.item} onPress={() => onNavigate("Controle")}>
-        <FontAwesome5 name="cogs" size={20} />
-        <Text style={styles.text}>Controle de máquinas</Text>
-      </TouchableOpacity>
-
-      {/* Rodapé fixo */}
       <View style={styles.footer}>
-        <TouchableOpacity style={styles.item} onPress={() => onNavigate("Configuracoes")}>
-          <Ionicons name="settings-outline" size={20} />
+        <TouchableOpacity
+          style={styles.footerItem}
+          onPress={() => onNavigate("Configuracoes")}
+        >
+          <Ionicons name="settings-outline" size={24} color="black" />
           <Text style={styles.text}>Configurações</Text>
         </TouchableOpacity>
-
-        <TouchableOpacity style={styles.item} onPress={() => onNavigate("Ajuda")}>
-          <Ionicons name="help-circle-outline" size={20} />
+        <TouchableOpacity style={styles.footerItem} onPress={() => onNavigate("Ajuda")}>
+          <Ionicons name="help-circle-outline" size={24} color="black" />
           <Text style={styles.text}>Ajuda</Text>
         </TouchableOpacity>
       </View>
@@ -64,48 +64,87 @@ export default function Sidebar({ onNavigate, onToggle }: SidebarProps) {
   );
 }
 
-const { width } = Dimensions.get("window");
+const menuItems = [
+  {
+    screen: "Inicio",
+    label: "Início",
+    icon: <FontAwesome5 name="house-user" size={24} color="black"/>,
+  },
+  {
+    screen: "Monitoramento",
+    label: "Monitoramento",
+    icon: <Ionicons name="desktop-outline" size={24} color="black" />,
+  },
+  {
+    screen: "Chatbot",
+    label: "Chatbot",
+    icon: <MaterialCommunityIcons name="robot-outline" size={24} color="black" />,
+  },
+  {
+    screen: "Relatorios",
+    label: "Relatórios",
+    icon: <Ionicons name="document-text-outline" size={24} color="black" />,
+  },
+  {
+    screen: "Controle",
+    label: "Controle de máquinas",
+    icon: <FontAwesome5 name="cogs" size={24} color="black" />,
+  },
+];
 
 const styles = StyleSheet.create({
   sidebar: {
-    width: width < 500 ? "60%" : 250,
+    position: "absolute",
+    top: 0,
+    left: 0,
+    bottom: 0,
     backgroundColor: "#fff",
-    paddingTop: 40,
     paddingHorizontal: 16,
-    height: "100%",
+    zIndex: 1000,
     flex: 1,
   },
   logoContainer: {
     flexDirection: "row",
     alignItems: "center",
+    paddingVertical: 10,
     marginBottom: 24,
-    gap: 4,
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
   },
-  logoText: {
-    fontSize: 18,
+  ecoText: {
+    fontSize: 24,
+    color: "#000",
+    marginLeft: 8,
+  },
+  visionText: {
+    fontSize: 24,
     fontWeight: "bold",
     color: "#000",
   },
   logo: {
-    width: 28,
-    height: 28,
+    width: 35,
+    height: 35,
     resizeMode: "contain",
     marginLeft: 10,
   },
   item: {
     flexDirection: "row",
     alignItems: "center",
-    paddingVertical: 12,
-    gap: 10,
+    marginBottom: 40,
   },
   text: {
-    fontSize: 16,
+    fontSize: 18,
+    marginLeft: 12,
     color: "#000",
   },
   footer: {
-    marginTop: "auto",
+    marginTop: 330,
+    paddingVertical: 20,
     borderTopWidth: 1,
     borderTopColor: "#ccc",
-    paddingTop: 20,
+  },
+  footerItem:{
+    marginBottom: 20,
+    flexDirection: "row",
   },
 });
