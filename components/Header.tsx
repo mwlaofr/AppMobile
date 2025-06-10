@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 interface HeaderProps {
@@ -18,17 +18,13 @@ export default function Header({ title, onMenuPress }: HeaderProps) {
   );
 }
 
-
-const { width } = Dimensions.get("window");
-
 const styles = StyleSheet.create({
   header: {
+    height: 50,
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 16,
-    height: 30,
     backgroundColor: "#fff",
-    
   },
   menuButton: {
     padding: 4,
