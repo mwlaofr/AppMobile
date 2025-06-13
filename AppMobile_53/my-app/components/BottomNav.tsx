@@ -9,7 +9,7 @@ const tabs = [
   { name: "ChatBot", icon: "smart-toy", route: "/chatbot" },
   { name: "Alertas", icon: "notifications", route: "/alerts" },
   { name: "Configurações", icon: "settings", route: "/settings" },
-];
+] as const;
 
 export default function BottomNav() {
   const router = useRouter();

@@ -80,6 +80,13 @@ function RootLayoutNav() {
             headerShown: false, // Remove o cabeçalho (setinha de voltar)
           }}
         />
+        <Stack.Screen
+          name="monitoring"
+          options={{
+            title: "monitoramento", // Define o título da tela
+            headerShown: false, // Remove o cabeçalho (setinha de voltar)
+          }}
+        />
         <Tabs
           screenOptions={{
             headerShown: false, // Remove o cabeçalho de todas as telas dentro de Tabs
