@@ -75,7 +75,7 @@ export default function Monitoramento() {
               labels: ["Baixo", "Médio", "Alto"],
               datasets: [
                 {
-                  data: [30, 50, 40], // plástico
+                  data: [32, 50, 40], // plástico
                   color: (opacity = 1) => `rgba(105, 181, 120, ${opacity})`,
                   strokeWidth: 2,
                   label: "Plástico",
@@ -116,7 +116,7 @@ export default function Monitoramento() {
               labels: ["Plástico Baixo", "Plástico Médio", "Plástico Alto", "Metal Baixo", "Metal Médio", "Metal Alto"],
               datasets: [
                 {
-                  data: [30, 50, 40, 20, 35, 25],
+                  data: [10, 20, 30, 5, 10, 25],
                 },
               ],
             }}

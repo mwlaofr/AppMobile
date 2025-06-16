@@ -76,7 +76,7 @@ export default function Dashboard() {
           <View style={styles.cardContainer}>
             <View style={[styles.card, { backgroundColor: "#69B578" }]}>
               <Text style={styles.cardTitle}>Separado Hoje</Text>
-              <Text style={styles.cardValue}>30 kg</Text>
+              <Text style={styles.cardValue}>10 kg</Text>
             </View>
             <View style={[styles.card, { backgroundColor: "#A1C181" }]}>
               <Text style={styles.cardTitle}>Alertas Ativos</Text>
@@ -84,7 +84,7 @@ export default function Dashboard() {
             </View>
             <View style={[styles.card, { backgroundColor: "#FFB627" }]}>
               <Text style={styles.cardTitle}>Média Semanal</Text>
-              <Text style={styles.cardValue}>5 kg</Text>
+              <Text style={styles.cardValue}>14 kg</Text>
             </View>
           </View>
 
